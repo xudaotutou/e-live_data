@@ -1,31 +1,39 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue';
+import AsideMenu from './components/AsideMenu.vue';
+const zIndex = ref(3000)
+const size = ref('small')
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <el-config-provider :size="size" :z-index="zIndex">
+    <el-container class="app-container">
+      <el-header>
+        <Header></Header>
+      </el-header>
+      <el-container class="main-container">
+        <el-aside width="10vw">
+          <AsideMenu></AsideMenu>
+        </el-aside>
+        <el-main>
+          <RouterView></RouterView>
+        </el-main>
+      </el-container>
+    </el-container>
+  </el-config-provider>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: yellow;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+</style>
+<style>
+#app {
+  text-align: center;
+  padding: 0;
+  color: var(--ep-text-color-primary);
 }
 </style>
