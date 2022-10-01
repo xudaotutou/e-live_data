@@ -6,7 +6,7 @@ import { LineChart } from 'echarts/charts';
 import { UniversalTransition } from 'echarts/features';
 
 describe("chart container", () => {
-  it("mount chart and inject width/height", () => {
+  it.skip("mount chart and inject width/height", () => {
     let list = [GridComponent, LineChart, UniversalTransition];
     let option = {
       xAxis: {
@@ -23,20 +23,13 @@ describe("chart container", () => {
         }
       ]
     };
-    let style = {
-      width:"1200px",
-      height:"1000px"
-    }
     let wrapper = mount(Chart,{
       props:{
         useList:list,
-        option,
-        style
+        option
       }
     })
-    console.dir(wrapper)
   })
-  it.todo("container get id")
 
   it.todo("render type: bar")
   it.todo("render type: line")

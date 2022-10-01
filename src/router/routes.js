@@ -1,5 +1,5 @@
 const routes = [{
-    path: "/",
+    path: "/", 
     redirect: "/main",
 }, {
     path: "/main",
