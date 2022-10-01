@@ -4,15 +4,15 @@ const routes = [{
 }, {
     path: "/main",
     component: () =>
-        import ("@/views/main/Main.vue"),
+        import("@/views/main/Main.vue"),
     children: [{
         path: "/main/LiveData",
         component: () =>
-            import ("@/views/main/LiveData.vue")
+            import("@/views/main/showData/LiveData.vue")
     }, {
         path: "/main/UserCenter",
         component: () =>
-            import ("@/views/main/UserCenter.vue")
-    }]
-}, ];
+            import("@/views/main/UserCenter.vue")
+    },]
+},];
 export default routes;
