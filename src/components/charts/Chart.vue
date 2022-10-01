@@ -28,10 +28,9 @@ import { SVGRenderer } from 'echarts/renderers';
 // };
 
 // option && myChart.setOption(option);
-const {useList=[], option={}, style={width:"full",height:"full"}} = defineProps({
-  useList:Array,
-  option:Object,
-  style:Object
+const { useList = [], option = {}} = defineProps({
+  useList: Array,
+  option: Object,
 })
 
 const container = ref(null)
@@ -40,24 +39,28 @@ echarts.use([
   ...useList,
   SVGRenderer
 ])
-onMounted(()=>{
+onMounted(() => {
   // container.value.el.id = chartId.toString()
   let dom = container.value
   myChart = echarts.init(dom)
   myChart && myChart.setOption(option, null, {
-      renderer: 'svg'
-    })
+    renderer: 'svg'
+  })
+  dom.onResize = myChart && myChart.resize()
 })
 
-onBeforeUnmount(()=>{
+onBeforeUnmount(() => {
   myChart && myChart.dispose()
 })
 </script>
 
 <template>
-<div ref="container" :style="style">???</div>
+  <div ref="container" class="container">???</div>
 </template>
 
 <style scoped>
-
+.container {
+  width: 100%;
+  height: 100%;
+}
 </style>
