@@ -39,6 +39,11 @@ echarts.use([
   ...useList,
   SVGRenderer
 ])
+// 抽离出来使得resize事件可以在全局挂载和卸载
+const resizeDom = ()=>{
+    myChart && myChart.resize()
+  }
+
 onMounted(() => {
   // container.value.el.id = chartId.toString()
   let dom = container.value
@@ -46,16 +51,21 @@ onMounted(() => {
   myChart && myChart.setOption(option, null, {
     renderer: 'svg'
   })
-  dom.onResize = myChart && myChart.resize()
+  window.addEventListener("resize", resizeDom)
 })
 
+watch(option, ()=>{
+  myChart && option && myChart.setOption(option)
+  console.log(option, 'ttt')
+})
 onBeforeUnmount(() => {
   myChart && myChart.dispose()
+  window.removeEventListener("resize",resizeDom)
 })
 </script>
 
 <template>
-  <div ref="container" class="container">???</div>
+  <div ref="container" class="container"></div>
 </template>
 
 <style scoped>
