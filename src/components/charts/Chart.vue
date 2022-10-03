@@ -28,10 +28,9 @@ import { SVGRenderer } from 'echarts/renderers';
 // };
 
 // option && myChart.setOption(option);
-const {useList=[], option={}, style={width:"full",height:"full"}} = defineProps({
-  useList:Array,
-  option:Object,
-  style:Object
+const { useList = [], option = {}} = defineProps({
+  useList: Array,
+  option: Object,
 })
 
 const container = ref(null)
@@ -40,24 +39,38 @@ echarts.use([
   ...useList,
   SVGRenderer
 ])
-onMounted(()=>{
+// 抽离出来使得resize事件可以在全局挂载和卸载
+const resizeDom = ()=>{
+    myChart && myChart.resize()
+  }
+
+onMounted(() => {
   // container.value.el.id = chartId.toString()
   let dom = container.value
   myChart = echarts.init(dom)
   myChart && myChart.setOption(option, null, {
-      renderer: 'svg'
-    })
+    renderer: 'svg'
+  })
+  window.addEventListener("resize", resizeDom)
 })
 
-onBeforeUnmount(()=>{
+watch(option, ()=>{
+  myChart && option && myChart.setOption(option)
+  console.log(option, 'ttt')
+})
+onBeforeUnmount(() => {
   myChart && myChart.dispose()
+  window.removeEventListener("resize",resizeDom)
 })
 </script>
 
 <template>
-<div ref="container" :style="style">???</div>
+  <div ref="container" class="container"></div>
 </template>
 
 <style scoped>
-
+.container {
+  width: 100%;
+  height: 100%;
+}
 </style>

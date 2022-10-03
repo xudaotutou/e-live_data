@@ -5,10 +5,22 @@ const routes = [{
     path: "/main",
     component: () =>
         import("@/views/main/Main.vue"),
-    children: [{
-        path: "/main/LiveData",
-        component: () =>
-            import("@/views/main/showData/LiveData.vue")
+    children: [
+        {
+        path: "liveData",
+        children: [
+            {
+                path: "",
+                redirect:"/main/liveData/room"
+            },
+            {
+                path: "room",
+                component: () => import("@/views/main/LiveData/RoomData.vue")
+            },{
+                path:"consumer",
+                component: ()=> import("@/views/main/LiveData/ConsumerData.vue")
+            }
+        ]
     }, {
         path: "/main/UserCenter",
         component: () =>
