@@ -46,6 +46,7 @@ const historyKey = [
   ["orderAmount", "订单金额"]
 ]
 let user = "xxx"
+
 </script>
 
 <template>
@@ -67,7 +68,7 @@ let user = "xxx"
       </el-col>
     </el-row>
     <div class="chart-container">
-      <Line :xData="xData" :yData="yData" title="UV价值曲线" :smooth="true"></Line>
+      <Line :xData="xData" :yData="yData" title="UV价值曲线" :smooth="true" area></Line>
     </div>
     <div class="table-container">
       <h2>历史直播</h2>
