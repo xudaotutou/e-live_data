@@ -34,3 +34,9 @@
   align-items: center;
 }
 </style>
+<style>
+.el-dropdown-menu__item:not(.is-disabled):focus {
+  color: #ff9000;
+  background-color: #F5DEB340;
+}
+</style>

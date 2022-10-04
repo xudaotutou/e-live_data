@@ -22,6 +22,10 @@ const routes = [{
             }
         ]
     }, {
+        path: "/main/OrderData",
+        component: () =>
+            import ("@/views/main/OrderData.vue")
+    }, {
         path: "/main/UserCenter",
         component: () =>
             import("@/views/main/UserCenter.vue")

@@ -60,11 +60,15 @@ const menuList = [{
     }
   ]
 }, {
-  name: '个人中心',
-  id: '5',
-  path: '/main/UserCenter',
-  icon: 'User',
-  children: []
+  name:'订单数据',
+  id:'4',
+  path:'/main/OrderData',
+  icon: 'Document'
+}, {
+  name:'个人中心',
+  id:'5',
+  path:'/main/UserCenter',
+  icon: 'User'
 }]
 const activeIndex = ref('/main/UserCenter')
 </script>

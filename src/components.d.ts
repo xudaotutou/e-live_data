@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    '(feat': card and search components)
     AsideMenu: typeof import('./components/aside-menu/aside-menu.vue')['default']
     Bar: typeof import('./components/charts/Bar.vue')['default']
     Chart: typeof import('./components/charts/Chart.vue')['default']
@@ -27,16 +28,14 @@ declare module '@vue/runtime-core' {
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
-    ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
     ElRow: typeof import('element-plus/es')['ElRow']
-    ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
-    ElTable: typeof import('element-plus/es')['ElTable']
-    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Line: typeof import('./components/charts/Line.vue')['default']
     NavHeader: typeof import('./components/nav-header/nav-header.vue')['default']
+    PageSearch: typeof import('./components/page-search/page-search.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SmoothLine: typeof import('./components/charts/SmoothLine.vue')['default']
