@@ -16,6 +16,7 @@ const useList = ([GridComponent, BarChart,TitleComponent]);
 })
 
 const option = ref({
+  color:['#e9951a'],
   title:{
     text:""
   },
