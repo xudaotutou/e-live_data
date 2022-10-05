@@ -1,13 +1,26 @@
 <script setup>
 import Line from '@/components/charts/Line.vue';
 
-const xData = ref(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
-const yData = ref([[150, 230, 224, 218, 135, 147, 260]])
-onMounted(() => {
-  // setInterval(()=>{
-  //   console.log('hhh')
-  //   yData.value = yData.value.map(x=>x *1.1)
-  // },2000)
+const option = ref({
+  color: ["#e9951a"],
+  title: {
+    text: "UV价值曲线"
+  },
+  xAxis: {
+    type: 'category',
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: [150, 230, 224, 218, 135, 147, 260],
+      type: 'line',
+      smooth: true,
+      areaStyle: {}
+    }
+  ]
 })
 const overviewList = [
   { name: "直播人数", value: 123 },
@@ -68,7 +81,7 @@ let user = "xxx"
       </el-col>
     </el-row>
     <div class="chart-container">
-      <Line :xData="xData" :yData="yData" title="UV价值曲线" :smooth="true" area></Line>
+      <Line :option="option"></Line>
     </div>
     <div class="table-container">
       <h2>历史直播</h2>

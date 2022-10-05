@@ -28,7 +28,12 @@ const routes = [{
     }, {
         path: "/main/UserCenter",
         component: () =>
-            import ("@/views/main/UserCenter.vue")
-    }, ]
-}, ];
+            import("@/views/main/UserCenter.vue")
+    },
+    {
+        path:"userAnaysis",
+        component:()=>import("@/views/main/UserData/UserAnalysis.vue")
+    }
+]
+},];
 export default routes;

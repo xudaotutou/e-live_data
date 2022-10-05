@@ -2,7 +2,7 @@
   <div class="aside-menu">
     <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" active-text-color="#ff9000" router>
       <template v-for="item in menuList" :key="item.id">
-        <template v-if="item.children.length > 0">
+        <template v-if="'children' in item && item.children.length > 0">
           <el-sub-menu :index="item.id">
             <template #title>
               <el-icon>
@@ -60,6 +60,12 @@ const menuList = [{
     }
   ]
 }, {
+  name: '用户数据分析',
+  id: '2',
+  path: '/main/userAnaysis',
+  icon: 'User',
+  children:[]
+},{
   name:'订单数据',
   id:'4',
   path:'/main/OrderData',
@@ -71,7 +77,7 @@ const menuList = [{
   path: '/main/UserCenter',
   icon: 'User',
   children: []
-}]
+},]
 const activeIndex = ref('/main/UserCenter')
 </script>
 
