@@ -14,11 +14,13 @@ const props = defineProps({
   xData:Array,
   yData:Array,
   title:String,
-  smooth:Boolean
+  smooth:Boolean,
+  area: Boolean,
 })
 let useList = [GridComponent, LineChart, UniversalTransition,TitleComponent];
 
 let option = ref({
+  color:["#e9951a"],
   title:{
     text:""
   },
@@ -33,7 +35,8 @@ let option = ref({
     {
       data: props.yData,
       type: 'line',
-      smooth: props.smooth
+      smooth: props.smooth,
+      areaStyle:undefined
     }
   ]
 })
@@ -44,11 +47,16 @@ watchEffect(()=>{
   // option.value.series[0].data = props.yData
   option.value.series.length = 0
   props.yData.forEach((yd)=>{
-    option.value.series.push({
+    const yserie = {
       data:yd,
       type:"line",
-      smooth:props.smooth
-    })
+      smooth:props.smooth,
+      areaStyle:undefined
+    }
+    if(props.area) {
+      yserie.areaStyle = {}
+    }
+    option.value.series.push(yserie)
   })
   option.value.xAxis.data = props.xData 
 })
