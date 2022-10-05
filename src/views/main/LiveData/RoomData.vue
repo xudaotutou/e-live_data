@@ -63,42 +63,48 @@ let user = "xxx"
 </script>
 
 <template>
-  <div class="container">
-    <el-row>
-      <el-col :span="24">
-        <h2>{{user}}的直播间</h2>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="8" v-for="(kv,i) in overviewList" :key="kv.name" class="overview">
-        <el-icon>
-          <User />
-        </el-icon>
-        <div class="overview-info">
-          <div>{{kv.name}}</div>
-          <div><b>{{kv.value}}</b></div>
-        </div>
-      </el-col>
-    </el-row>
-    <div class="chart-container">
-      <Line :option="option"></Line>
-    </div>
-    <div class="table-container">
-      <h2>历史直播</h2>
-      <el-table :data="historyLive" :default-sort="{ order: 'descending' }" style="width: 100%" max-height="450">
-        <el-table-column v-for=" obj in historyKey" :key="obj[1]" :prop="obj[0]" :label="obj[1]" sortable />
-      </el-table>
-    </div>
-  </div>
-  <div>
+  <div class="room-container">
+    <el-card class="box-card">
+      <el-row>
+        <el-col :span="24">
+          <h2>{{user}}的直播间</h2>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="8" v-for="(kv,i) in overviewList" :key="kv.name" class="overview">
+          <el-icon>
+            <User />
+          </el-icon>
+          <div class="overview-info">
+            <div>{{kv.name}}</div>
+            <div><b>{{kv.value}}</b></div>
+          </div>
+        </el-col>
+      </el-row>
+      <div class="chart-container">
+        <Line :option="option"></Line>
+      </div>
+    </el-card>
+    <el-card class="box-card">
+      <div class="table-container">
 
+        <h2>历史直播</h2>
+        <el-table :data="historyLive" :default-sort="{ order: 'descending' }" style="width: 100%" max-height="450">
+          <el-table-column v-for=" obj in historyKey" :key="obj[1]" :prop="obj[0]" :label="obj[1]" sortable />
+        </el-table>
+
+      </div>
+    </el-card>
   </div>
 </template>
 
 <style scoped>
-.container {
+.room-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
   width: 100%;
-  height: 20vw;
+  height: 90vh;
   margin: 0 auto;
 }
 
@@ -128,6 +134,11 @@ let user = "xxx"
 .table-container,
 .chart-container {
   width: 70vw;
+  height: 30vh;
   margin: 0 auto;
+}
+
+.box-card {
+  margin: 0.5vw;
 }
 </style>

@@ -48,7 +48,7 @@ const orderData = {
 const orderCountOption = ref({
   color: ["#e9951a"],
   title: {
-    text: ""
+    text: "订单数量"
   },
   xAxis: {
     type: 'category',
@@ -67,7 +67,7 @@ const orderCountOption = ref({
 const orderValueOption = ref({
   color: ['#e9951a'],
   title: {
-    text: ""
+    text: "订单金额"
   },
   xAxis: {
     type: 'category',
@@ -162,27 +162,17 @@ const saleKey = [
   ["clickRate", "点击量"]
 ]
 
-const _userData = [
-  {
-    ts: "",
-    conversion: 0.66,
-    interactive: 0.77,
-    peopleCount: 1000
-  }, {
-    ts: "",
-    conversion: 0.67,
-    interactive: 0.76,
-    peopleCount: 129
-  }
-]
 
 const userDataOption = ref({
   color: ["#e9951a", "#f39423", "#f9c78b"],
   title: {
     text: "用户数据分析"
   },
+  tooltip:{
+    trigger:'axis',
+
+  },
   legend:{
-  
   },
   xAxis: {
     type: 'category',
@@ -239,7 +229,7 @@ const userDataOption = ref({
 <template>
   <div class="container">
     <el-card class="card-box first-row">
-      <span class="overview-title">直播分析</span>
+      <div class="overview-title">直播分析</div>
       <el-row>
         <el-col :span="6" v-for="(kv,i) in overviewList" :key="kv.name" class="overview">
           <!-- <el-card class="overview-card" :class="[kv.cardClass]"> -->
@@ -314,14 +304,18 @@ const userDataOption = ref({
 
 .overview-title {
   font-size: large;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .overview-info-title {
   font-size: 1vw;
+  margin-bottom: 1vh;
 }
 
 .overview-info {
-  margin: 0 1vw;
+  margin: 0 1vw 0 0;
   height: 100%;
   padding: 1vh 1vw;
   display: flex;
@@ -357,7 +351,7 @@ const userDataOption = ref({
 }
 
 .first-row {
-  height: 10vh;
+  height: 22vh;
 }
 
 .second-row {
@@ -366,7 +360,7 @@ const userDataOption = ref({
 }
 
 .third-row {
-  height: 30vh;
+  height: 40vh;
   margin-top: 10px;
 }
 

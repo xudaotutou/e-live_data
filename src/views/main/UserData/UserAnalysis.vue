@@ -107,7 +107,15 @@ const dailyDataOption = ref(
       ]
     },
     yAxis:{
-      type:'value'
+      type:'value',
+      axisLabel:{
+        formatter:'{value}%'
+      }
+    },
+    tooltip:{
+      trigger:'axis',
+      // formatter: '{b0}<br/>{a0}: {c0}<br />{a1}: {c1}'
+      valueFormatter(str){return `${str}%`}
     },
     legend:{},
     "series": [
@@ -126,6 +134,7 @@ const dailyDataOption = ref(
           50
         ],
         "type": "line",
+        name:"转化率"
       },
       {
         "data": [
@@ -142,6 +151,7 @@ const dailyDataOption = ref(
           20
         ],
         "type": "line",
+        name:"增长率"
       }
     ]
   })
@@ -207,7 +217,8 @@ const consumeListCircle = ref(
     },
     tooltip: {
       trigger: 'item',
-      formatter: '{a} <br/>{b}: {c} ({d}%)'
+      // formatter: '{a} <br/>{b}: {c} ({d}%)'
+      valueFormatter(str){return `${str}%`}
     },
     legend: {
     },
@@ -297,7 +308,7 @@ const consumeListCircle = ref(
         </el-card>
       </el-col>
     </el-row>
-    <!-- <el-row>
+    <el-row>
       <el-col :span="12">
         <el-card class="box-card">
           <div class="consume-bar">
@@ -312,7 +323,7 @@ const consumeListCircle = ref(
           </div>
         </el-card>
       </el-col>
-    </el-row> -->
+    </el-row>
     <el-row class="third-row">
       <el-col :span="24">
         <el-card class="box-card">
@@ -339,7 +350,9 @@ const consumeListCircle = ref(
   height: 50vh;
   margin-bottom: 5px;
 }
-
+.third-row {
+  margin-top: 5px;
+}
 .box-card {
   margin: 5px;
   height: 100%;
