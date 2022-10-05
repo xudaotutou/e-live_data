@@ -64,6 +64,12 @@ const menuList = [{
   id: '2',
   path: '/main/userAnaysis',
   icon: 'User',
+  children:[]
+},{
+  name:'订单数据',
+  id:'4',
+  path:'/main/OrderData',
+  icon: 'Document',
   children: []
 }, {
   name: '个人中心',

@@ -4,23 +4,27 @@ const routes = [{
 }, {
     path: "/main",
     component: () =>
-        import("@/views/main/Main.vue"),
-    children: [
-        {
+        import ("@/views/main/Main.vue"),
+    children: [{
         path: "liveData",
-        children: [
-            {
+        children: [{
                 path: "",
-                redirect:"/main/liveData/room"
+                redirect: "/main/liveData/room"
             },
             {
                 path: "room",
-                component: () => import("@/views/main/LiveData/RoomData.vue")
-            },{
-                path:"consumer",
-                component: ()=> import("@/views/main/LiveData/ConsumerData.vue")
+                component: () =>
+                    import ("@/views/main/LiveData/RoomData.vue")
+            }, {
+                path: "consumer",
+                component: () =>
+                    import ("@/views/main/LiveData/ConsumerData.vue")
             }
         ]
+    }, {
+        path: "/main/OrderData",
+        component: () =>
+            import ("@/views/main/OrderData.vue")
     }, {
         path: "/main/UserCenter",
         component: () =>
