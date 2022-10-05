@@ -60,6 +60,12 @@ const menuList = [{
     }
   ]
 }, {
+  name:'订单数据',
+  id:'4',
+  path:'/main/OrderData',
+  icon: 'Document',
+  children: []
+}, {
   name: '个人中心',
   id: '5',
   path: '/main/UserCenter',

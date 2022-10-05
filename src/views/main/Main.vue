@@ -15,7 +15,8 @@
         </el-main>
       </el-container>
     </el-container>
-  </div></template>
+  </div>
+</template>
 
 <script>
 import NavHeader from "@/components/nav-header";
@@ -48,9 +49,6 @@ export default {
   color: #333;
   text-align: center;
   align-items: center;
-}
-
-.el-header {
   height: 48px !important;
   background-color: #fff;
 }
@@ -64,15 +62,16 @@ export default {
   background-color: #fff;
   transition: width 0.3s linear;
   margin-top: 10px;
+  width: 180px;
 }
 
 .el-main {
+  min-width: 610px;
   color: #333;
   text-align: center;
   background-color: #fff;
   padding: 0;
-  margin: 15px;
-  overflow: hidden
+  margin: 10px;
 }
 
 </style>
