@@ -10,7 +10,6 @@ declare module '@vue/runtime-core' {
     AsideMenu: typeof import('./components/aside-menu/aside-menu.vue')['default']
     Bar: typeof import('./components/charts/Bar.vue')['default']
     Chart: typeof import('./components/charts/Chart.vue')['default']
-    copy: typeof import('./components/charts/SmoothLine copy.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -26,8 +25,6 @@ declare module '@vue/runtime-core' {
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
-    ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
-    ElOption: typeof import('element-plus/es')['ElOption']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
@@ -40,7 +37,6 @@ declare module '@vue/runtime-core' {
     NavHeader: typeof import('./components/nav-header/nav-header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SmoothLine: typeof import('./components/charts/SmoothLine.vue')['default']
     UserInfo: typeof import('./components/nav-header/user-info.vue')['default']
   }
 }
