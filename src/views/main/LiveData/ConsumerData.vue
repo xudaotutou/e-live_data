@@ -45,6 +45,52 @@ const orderData = {
     139
   ]]
 }
+const orderCountOption = ref({
+  color: ["#e9951a"],
+  title: {
+    text: ""
+  },
+  xAxis: {
+    type: 'category',
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: [150, 230, 224, 218, 135, 147, 260],
+      type: 'line',
+    }
+  ]
+})
+const orderValueOption = ref({
+  color: ['#e9951a'],
+  title: {
+    text: ""
+  },
+  xAxis: {
+    type: 'category',
+    data: [
+      "1月",
+      "2月",
+      "3月",
+      "4月",
+      "5月"
+    ]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: [
+        100, 200, 302, 104, 112
+      ],
+      type: 'bar',
+    }
+  ]
+})
 
 const saleSort = ref([
   {
@@ -116,27 +162,6 @@ const saleKey = [
   ["clickRate", "点击量"]
 ]
 
-const userData = [
-  {
-    // 人数
-    name: "人数",
-    data: [1000, 129],
-    type: "line",
-    
-  }, {
-    // 转粉率
-    name:"转粉率",
-    data: [0.67,0.76],
-    yAxisIndex: 1,
-    type: "bar",
-  }, {
-    // 互动率
-    name: "互动率",
-    data: [0.67, 0.76],
-    yAxisIndex: 2,
-    type: "bar",
-  }
-]
 const _userData = [
   {
     ts: "",
@@ -150,7 +175,19 @@ const _userData = [
     peopleCount: 129
   }
 ]
-const userY =  [
+
+const userDataOption = ref({
+  color: ["#e9951a", "#f39423", "#f9c78b"],
+  title: {
+    text: "用户数据分析"
+  },
+  legend:{
+  
+  },
+  xAxis: {
+    type: 'category',
+  },
+  yAxis: [
     {
       type: 'value',
       name: "人数",
@@ -161,22 +198,42 @@ const userY =  [
     },
     {
       type: 'value',
-      name: "转粉率",
+      name: "转粉率/互动率",
       position: 'right',
-      offset: 80,
       axisLabel: {
         formatter: '{value} %'
       }
     },
+    // {
+    //   type: 'value',
+    //   name: "互动率",
+    //   position: 'right',
+    //   axisLabel: {
+    //     formatter: '{value} %'
+    //   }
+    // }
+  ],
+  series: [
     {
-      type: 'value',
+      // 人数
+      name: "人数",
+      data: [1000, 129],
+      type: "line",
+    }, {
+      // 转粉率
+      name: "转粉率",
+      data: [67, 76],
+      yAxisIndex: 1,
+      type: "bar",
+    }, {
+      // 互动率
       name: "互动率",
-      position: 'right',
-      axisLabel: {
-        formatter: '{value} %'
-      }
+      data: [67, 76],
+      yAxisIndex: 1,
+      type: "bar",
     }
   ]
+})
 </script>
 
 <template>
@@ -203,10 +260,10 @@ const userY =  [
         <el-card class="card-box ">
           <div class="order-box midle-row-container">
             <div class="order-chart">
-              <Bar :title="orderData.title" :x-data="orderData.xData" :y-data="orderData.yData"></Bar>
+              <Bar :option="orderCountOption"></Bar>
             </div>
             <div class="order-chart">
-              <Line :title="orderData.title" :x-data="orderData.xData" :y-data="orderData.yData" :area="false"></Line>
+              <Line :option="orderValueOption"></Line>
             </div>
           </div>
 
@@ -226,7 +283,7 @@ const userY =  [
     </el-row>
     <el-card class="third-row card-box">
       <div class="user-chart">
-        <HybridLineBar :y-data="userData" :y-axis="userY"></HybridLineBar>
+        <HybridLineBar :option="userDataOption"></HybridLineBar>
       </div>
     </el-card>
   </div>
