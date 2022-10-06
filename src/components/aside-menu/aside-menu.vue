@@ -65,7 +65,7 @@ const menuList = [{
   path: '/main/userAnaysis',
   icon: 'User',
   children:[]
-},{
+}, {
   name:'订单数据',
   id:'4',
   path:'/main/OrderData',

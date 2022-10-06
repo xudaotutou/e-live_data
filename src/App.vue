@@ -1,8 +1,13 @@
 <script setup>
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import { ref } from "vue";
+let locale = ref(zhCn)
 </script>
 
 <template>
-  <router-view></router-view>
+  <el-config-provider :locale="locale">
+    <router-view />
+  </el-config-provider>
 </template>
 
 <style scoped>

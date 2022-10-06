@@ -3,36 +3,20 @@
     <LdCard v-bind="cardConfig"></LdCard>
     <PageSearch v-bind="searchConfig">
     </PageSearch>
-    <div class="header">
-      <el-button
-        >批量导入</el-button
-      >
-      <el-button
-        ><el-icon><Download /></el-icon>下载</el-button
-      >
-    </div>
-    <el-table :data="tableData">
-      <template v-for="propItem in contentConfig" :key="propItem.prop">
-        <el-table-column v-if="propItem.prop === 'operation'" v-bind="propItem">
-          <a>查看</a>
-        </el-table-column>
-        <el-table-column v-else v-bind="propItem">
-        </el-table-column>
-        </template>
-    </el-table>
-    <div class="footer">
-      <el-pagination
-        layout="total, prev, pager, next"
-        :total="tableCount"
-      >
-      </el-pagination>
-    </div>
+    <PageContent v-bind="contentConfig" :tableData="listData">
+    </PageContent>
   </div>
 </template>
 
 <script setup>
 import LdCard from "@/base-ui/card";
-
+import { getOrderData } from '@/utils/api/orderData'
+let listData = ref([])
+onBeforeMount (()=>{
+  getOrderData().then(res=>{
+  listData.value = res.data
+  })
+})
 let cardConfig = {
   colLayout:{
     span: 8,
@@ -101,26 +85,9 @@ const searchConfig ={
     }
   ]
 }
-let tableCount = 10
-let tableData = [{
-            "number": "232",
-            "link": "iPhone14",
-            "userName": "张三",
-            "price": 5999,
-            "createTime": "2022-9-27",
-            "transactionTime": "-",
-            "state": "已取消"
-        },
-        {
-            "number": "233",
-            "link": "iPhone14",
-            "userName": "李四",
-            "price": 5999,
-            "createTime": "2022-9-27 10:20",
-            "transactionTime": "2022-9-27 10:20",
-            "state": "已完成"
-        }]
-let contentConfig = [
+const contentConfig ={
+  tableCount: 10,
+  propList: [
     { prop: "number", label: "订单编号", minWidth: "100", align: 'center' },
     { prop: "link", label: "订单链接", minWidth: "100" },
     { prop: "userName", label: "用户名称", minWidth: "100" },
@@ -134,10 +101,15 @@ let contentConfig = [
       minWidth: "120",
     },
   ]
+}
 </script>
 
 <style scoped>
 .page-search {
-  border-top: 20px solid #f0f2f5
+  border-top: 15px solid #f0f2f5;
+}
+.page-content {
+  border-top: 15px solid #f0f2f5;
+  margin-bottom: 40px
 }
 </style>
