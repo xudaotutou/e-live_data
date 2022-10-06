@@ -10,3 +10,9 @@ export function getConsumer() {
     url:'/api/liveAnalysis'
   })
 }
+
+export function getUserAnalysis() {
+  return request({
+    url:'/api/userAnalysis'
+  })
+}
