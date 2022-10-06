@@ -1,7 +1,7 @@
 <script setup>
 // import Bar from '@/components/charts/Bar.vue';
-
-const overviewList = [
+import {getConsumer} from "@/utils/api/chartData.js"
+const overviewList = ref([
   {
     name: "GMV",
     value: 12256,
@@ -26,25 +26,7 @@ const overviewList = [
     delta: 112,
     cardClass: "overview-AVT-Card"
   }
-]
-
-const orderData = {
-  "title": "订单金额",
-  "xData": [
-    "1月",
-    "2月",
-    "3月",
-    "4月",
-    "5月"
-  ],
-  "yData": [[
-    100,
-    140,
-    224,
-    100,
-    139
-  ]]
-}
+])
 const orderCountOption = ref({
   color: ["#e9951a"],
   title: {
@@ -52,17 +34,16 @@ const orderCountOption = ref({
   },
   xAxis: {
     type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    data: []
   },
   yAxis: {
     type: 'value'
   },
-  series: [
+  series: 
     {
-      data: [150, 230, 224, 218, 135, 147, 260],
+      data: [],
       type: 'line',
     }
-  ]
 })
 const orderValueOption = ref({
   color: ['#e9951a'],
@@ -72,88 +53,20 @@ const orderValueOption = ref({
   xAxis: {
     type: 'category',
     data: [
-      "1月",
-      "2月",
-      "3月",
-      "4月",
-      "5月"
     ]
   },
   yAxis: {
     type: 'value'
   },
-  series: [
+  series: 
     {
       data: [
-        100, 200, 302, 104, 112
       ],
       type: 'bar',
     }
-  ]
 })
 
-const saleSort = ref([
-  {
-    "ranking": 1,
-    "tradeName": "用魔法打败魔法",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 2,
-    "tradeName": "王多鱼",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 3,
-    "tradeName": "小李子",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 4,
-    "tradeName": "用魔法打败魔法",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 5,
-    "tradeName": "用魔法打败魔法",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 6,
-    "tradeName": "用魔法打败魔法",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 7,
-    "tradeName": "用魔法打败魔法",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 8,
-    "tradeName": "用魔法打败魔法",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 9,
-    "tradeName": "用魔法打败魔法",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  },
-  {
-    "ranking": 10,
-    "tradeName": "用魔法打败魔法",
-    "orderQuantity": 1500,
-    "clickRate": 32214
-  }
-])
+const saleSort = ref([])
 
 const saleKey = [
   ["ranking", "排名"],
@@ -162,7 +75,6 @@ const saleKey = [
   ["clickRate", "点击量"]
 ]
 
-
 const userDataOption = ref({
   color: ["#e9951a", "#f39423", "#f9c78b"],
   title: {
@@ -170,12 +82,12 @@ const userDataOption = ref({
   },
   tooltip:{
     trigger:'axis',
-
   },
   legend:{
   },
   xAxis: {
     type: 'category',
+    data:[]
   },
   yAxis: [
     {
@@ -194,36 +106,49 @@ const userDataOption = ref({
         formatter: '{value} %'
       }
     },
-    // {
-    //   type: 'value',
-    //   name: "互动率",
-    //   position: 'right',
-    //   axisLabel: {
-    //     formatter: '{value} %'
-    //   }
-    // }
   ],
   series: [
     {
       // 人数
       name: "人数",
-      data: [1000, 129],
+      data: [122,333],
       type: "line",
     }, {
       // 转粉率
       name: "转粉率",
-      data: [67, 76],
+      data: [33,22],
       yAxisIndex: 1,
       type: "bar",
     }, {
       // 互动率
       name: "互动率",
-      data: [67, 76],
+      data: [22, 89],
       yAxisIndex: 1,
       type: "bar",
     }
   ]
 })
+
+onBeforeMount(()=>getConsumer().then(res=>{
+    // 蠢了点
+    overviewList.value[0].value = res.liveAnalysis.gmv
+    overviewList.value[1].value = res.liveAnalysis.pcu
+    overviewList.value[2].value = res.liveAnalysis.acu.value
+    overviewList.value[2].delta = res.liveAnalysis.acu.lastTime
+    overviewList.value[3].value = res.liveAnalysis.averageTime.value
+    overviewList.value[3].delta = res.liveAnalysis.averageTime.lastTime
+
+    orderCountOption.value.xAxis.data = res.orderQuantity.xAxisData
+    orderCountOption.value.series.data = res.orderQuantity.seriesData
+
+    orderValueOption.value.xAxis.data = res.orderAmount.xAxisData
+    orderValueOption.value.series.data = res.orderAmount.seriesData
+
+    saleSort.value = res.topSale
+
+    // userDataOption.value.xAxis.data = res.orderAmount.xAxisData
+    // userDataOption.value.series.data = res.orderAmount.seriesData
+}))
 </script>
 
 <template>

@@ -39,10 +39,10 @@ onMounted(() => {
   window.addEventListener("resize", resizeDom)
 })
 
-watch(option, () => {
-  myChart && option && myChart.setOption({
-    option,
-  })
+watch(option, (newData) => {
+  myChart && newData && myChart.setOption(newData,true)
+}, { 
+  deep:true
 })
 onBeforeUnmount(() => {
   myChart && myChart.dispose()
