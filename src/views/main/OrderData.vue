@@ -24,41 +24,35 @@ let cardConfig = {
   cardItems: [{title:"总订单数", quantity: "3547", unit:'单'}, {title:"总交易额", quantity: "133547", unit:'单'}, {title:"平均客单价", quantity: "347", unit:'元'}]
 }
 const searchConfig ={
-  title: '查询商品',
+  title: '订单查询',
   colLayout:{
     span: 8,
   },
   labelWidth: "80px",
   formItems: [
     {
-      field: 'goodsId',
-      label: "商品编号",
+      field: 'id',
+      label: "订单编号",
       type: "input",
-      placeholder: "请输入商品编号"
+      placeholder: "请输入订单编号"
+    },
+    {
+      field: 'link',
+      label: "订单链接",
+      type: "input",
+      placeholder: "请输入订单链接"
     },
     {
       field: 'name',
-      label: "商品名称",
+      label: "用户名称",
       type: "input",
-      placeholder: "请输入商品名称"
-    },
-    {
-      field: 'category',
-      label: "商品类型",
-      type: "select",
-      placeholder: "全部",
-      options: [
-        { title: "家电", value: 0 },
-        { title: "数码", value: 1 },
-        { title: "美妆", value: 2 },
-        { title: "服饰", value: 3 },
-      ]
+      placeholder: "请输入用户名称",
     },
     {
       field: 'price',
-      label: "价格区间",
+      label: "订单金额",
       type: "select",
-      placeholder: "全部",
+      placeholder: "请选择金额范围",
       options: [
         { title: "0~50", value: 1 },
         { title: "50~200", value: 2 },
@@ -68,10 +62,9 @@ const searchConfig ={
       ]
     },
     {
-      field: 'link',
-      label: "商品链接",
-      type: "input",
-      placeholder: "请输入商品链接"
+      field: 'createTime',
+      label: "创建时间",
+      type: "date",
     },
     {
       field: 'status',

@@ -12,6 +12,9 @@
             <template v-if="item.type === 'input'">
               <el-input :placeholder="item.placeholder" v-model="formData[`${item.field}`]"></el-input>
             </template>
+            <template v-if="item.type === 'date'">
+              <el-date-picker type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" v-model="formData[`${item.field}`]"></el-date-picker>
+            </template>
             <template v-if="item.type === 'select'">
               <el-select :placeholder="item.placeholder" v-model="formData[`${item.field}`]">
                 <el-option

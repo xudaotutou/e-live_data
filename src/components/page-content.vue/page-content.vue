@@ -2,12 +2,18 @@
   <div class="page-content">
     <div class="header">
       <el-button>批量导入</el-button>
-      <el-button><el-icon><Download /></el-icon>下载</el-button>
+      <el-button><el-icon><Download /></el-icon>&nbsp;下载</el-button>
     </div>
     <el-table :data="tableData">
       <template v-for="propItem in propList" :key="propItem.prop">
         <el-table-column v-if="propItem.prop === 'operation'" v-bind="propItem">
           <a>查看</a>
+        </el-table-column>
+        <el-table-column v-else-if="propItem.prop === 'type'" v-bind="propItem">
+          <template #default="scope">
+            <img src="@/assets/digital.svg" width="20">
+            {{scope.row.type}}
+          </template>
         </el-table-column>
         <el-table-column v-else v-bind="propItem">
         </el-table-column>
@@ -43,5 +49,8 @@ const props = defineProps({
 }
 .el-pagination {
   text-align: right;
+}
+img{
+  vertical-align: middle;
 }
 </style>

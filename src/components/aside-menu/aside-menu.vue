@@ -25,14 +25,7 @@
             </el-icon>{{item.name}}
           </el-menu-item>
         </template>
-
-
       </template>
-      <!-- <el-menu-item index="1"><el-icon><Monitor /></el-icon>直播数据</el-menu-item>
-        <el-menu-item index="2"><el-icon><DataLine /></el-icon>用户分析</el-menu-item>
-        <el-menu-item index="3"><el-icon><Goods /></el-icon>商品数据</el-menu-item>
-        <el-menu-item index="4"><el-icon><Document /></el-icon>订单数据</el-menu-item>
-        <el-menu-item index="5"><el-icon><User /></el-icon>个人中心</el-menu-item> -->
     </el-menu>
   </div>
 </template>
@@ -63,8 +56,14 @@ const menuList = [{
   name: '用户数据分析',
   id: '2',
   path: '/main/userAnaysis',
-  icon: 'User',
+  icon: 'DataLine',
   children:[]
+}, {
+  name:'商品数据',
+  id:'3',
+  path:'/main/ProductData',
+  icon: 'Goods',
+  children: []
 }, {
   name:'订单数据',
   id:'4',
