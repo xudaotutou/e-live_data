@@ -32,10 +32,10 @@
       </el-row>
     </el-form>
     <div class="btns">
-      <el-button type="primary"
+      <el-button type="primary" @click="handleQueryClick"
         ><el-icon><search /></el-icon>查询</el-button
       >
-      <el-button
+      <el-button @click="handleResetClick"
         ><el-icon><refresh /></el-icon>重置</el-button
       >
     </div>
@@ -44,22 +44,27 @@
 
 <script setup>
 const props = defineProps({
-    // modelValue: {},
     title: String,
     labelWidth: String,
     formItems: Array,
     colLayout: Object
 })
+const emit = defineEmits(["resetBtnClick", "queryBtnClick"])
 const formItems = props.formItems ?? [];
-const formOriginData = {};
+const formOriginData = ref({});
 for (const item of formItems) {
   formOriginData[item.field] = ''; //默认值空字符串
 }
-const formData = ref(formOriginData);
-// const formData = ref({goodsId: '', name: '', category: '', price: '', link: '', status: ''});
+let formData = ref(formOriginData);
 
-// const emit = defineEmits(['update:modelValue'])
-// const handleValueChange = (value, field) => { emit('update:modelValue', { ...props.modelValue, [field]: value });}
+const handleResetClick = () => {
+  formData.value = formOriginData;
+  emit("resetBtnClick");
+};
+
+const handleQueryClick = () => {
+  emit("queryBtnClick", formData.value);
+};
 </script>
 
 <style scoped>

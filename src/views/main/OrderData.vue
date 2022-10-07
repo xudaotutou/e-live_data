@@ -1,7 +1,8 @@
 <template>
   <div class="order-data">
-    <LdCard v-bind="cardConfig"></LdCard>
-    <PageSearch v-bind="searchConfig">
+    <LdCard v-bind="cardConfig" :quantity="quantity"></LdCard>
+    <PageSearch v-bind="searchConfig" @resetBtnClick="handleResetClick"
+      @queryBtnClick="handleQueryClick">
     </PageSearch>
     <PageContent v-bind="contentConfig" :tableData="listData">
     </PageContent>
@@ -11,17 +12,34 @@
 <script setup>
 import LdCard from "@/base-ui/card";
 import { getOrderData } from '@/utils/api/orderData'
+import Util from "@/utils/filterUtils"
+
 let listData = ref([])
-onBeforeMount (()=>{
+let quantity = ref({})
+getOrderData().then(res=>{
+listData.value = res.data
+quantity.value = res.product
+})
+
+const handleResetClick = () => {
   getOrderData().then(res=>{
   listData.value = res.data
+  quantity.value = res.product
   })
-})
+}
+const handleQueryClick = (queryInfo) => {
+  getOrderData().then(res=>{
+  listData.value = res.data
+  quantity.value = res.product
+  })
+  console.log(queryInfo)
+  // let 
+}
 let cardConfig = {
   colLayout:{
     span: 8,
   },
-  cardItems: [{title:"总订单数", quantity: "3547", unit:'单'}, {title:"总交易额", quantity: "133547", unit:'单'}, {title:"平均客单价", quantity: "347", unit:'元'}]
+  cardItems: [{title:"总订单数", key: "totalOrders", unit:'单'}, {title:"总交易额", key: "totalTransactions", unit:'单'}, {title:"平均客单价", key: "averagePrice", unit:'元'}]
 }
 const searchConfig ={
   title: '订单查询',
@@ -84,7 +102,7 @@ const contentConfig ={
     { prop: "number", label: "订单编号", minWidth: "100", align: 'center' },
     { prop: "link", label: "订单链接", minWidth: "100" },
     { prop: "userName", label: "用户名称", minWidth: "100" },
-    { prop: "price", label: "订单金额", minWidth: "100", sortable: true },
+    { prop: "price", label: "订单金额", minWidth: "120", sortable: true },
     { prop: "createTime", label: "创建时间", minWidth: "150", sortable: true },
     { prop: "transactionTime", label: "交易时间", minWidth: "150" },
     { prop: "state",label: "状态",minWidth: "120"},

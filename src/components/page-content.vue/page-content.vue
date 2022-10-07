@@ -35,7 +35,21 @@ const props = defineProps({
     tableCount: Number,
     tableData: Array,
 })
-</script>
+
+//分页器信息变了就获取新数据
+const pageInfo = ref({ currentPage: 1 }); //默认第1页
+watch(pageInfo, () => getPageData()); 
+
+//获取新数据
+// const getPageData = (queryInfo) => {
+//   store.dispatch("system/getPageListAction", {
+//     pageName: props.pageName, //pageUrl 部门是/department/list，角色是/role/list...
+//     queryInfo: {
+//       ...queryInfo, //把queryInfo的东西全部拿出来，一个一个条件都可以查询
+//     },
+//   });
+// }; //不同页面就dispatch不同的东西，有不同的操作}
+// getPageData(); //一调用就可以发送网络请求</script>
 
 <style scoped>
 .page-content {

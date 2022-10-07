@@ -70,11 +70,9 @@
 // import { userCenterStore } from '@/store/userCenter.js'
 import { getUserData } from '@/utils/api/userCenter'
 let userInfo = ref({})
-onBeforeMount (()=>{
-  getUserData().then(res=>{
-  userInfo.value = res.data
-  const { userName, userId, createTime, authentication, phoneNumber, password, question, secureNumber, email} = userInfo.value
-  })
+getUserData().then(res=>{
+userInfo.value = res.data
+const { userName, userId, createTime, authentication, phoneNumber, password, question, secureNumber, email} = userInfo.value
 })
 
 const activeName = ref('security-settings')

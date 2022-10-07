@@ -1,6 +1,6 @@
 <template>
   <div class="product-data">
-    <LdCard v-bind="cardConfig"></LdCard>
+    <LdCard v-bind="cardConfig" :quantity="quantity"></LdCard>
     <PageSearch v-bind="searchConfig">
     </PageSearch>
     <PageContent v-bind="contentConfig" :tableData="listData">
@@ -12,19 +12,30 @@
 import LdCard from "@/base-ui/card";
 import { getProductData } from '@/utils/api/productData'
 let listData = ref([])
-let cardData = ref({})
-onBeforeMount (()=>{
+let quantity = ref({})
+getProductData().then(res=>{
+listData.value = res.data
+quantity.value = res.product
+})
+
+const handleResetClick = () => {
   getProductData().then(res=>{
   listData.value = res.data
-  cardData.value = res.product
-  console.log(cardData)
+  quantity.value = res.product
   })
-})
+}
+const handleQueryClick = (queryInfo) => {
+  getProductData().then(res=>{
+  listData.value = res.data
+  quantity.value = res.product
+  })
+}
+
 let cardConfig = {
   colLayout:{
     span: 8,
   },
-  cardItems: [{title:"上架商品", quantity: "37", unit:'件'}, {title:"已下架商品", quantity: "547", unit:'件'}, {title:"待上架商品", quantity: "47", unit:'件'}]
+  cardItems: [{title:"上架商品", key: "onlineGoods", unit:'件'}, {title:"已下架商品", key: "offlineGoods", unit:'件'}, {title:"待上架商品", key: "goods", unit:'件'}]
 }
 const searchConfig ={
   title: '查询商品',
@@ -96,9 +107,9 @@ const contentConfig ={
     { prop: "link", label: "链接", minWidth: "100" },
     { prop: "type", label: "类型", minWidth: "100" },
     { prop: "price", label: "价格", minWidth: "100", sortable: true },
-    { prop: "clickRate", label: "曝光点击率", minWidth: "100", sortable: true },
-    { prop: "orderPlacementRate", label: "点击下单率", minWidth: "100", sortable: true },
-    { prop: "state",label: "状态",minWidth: "120"},
+    { prop: "clickRate", label: "曝光点击率", minWidth: "120", sortable: true },
+    { prop: "orderPlacementRate", label: "点击下单率", minWidth: "120", sortable: true },
+    { prop: "state",label: "状态",minWidth: "100"},
     { prop: "uptime", label: "创建时间", minWidth: "150", sortable: true },
     { prop: "downtime", label: "下架时间", minWidth: "150" },
   ]
