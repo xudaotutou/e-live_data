@@ -1,10 +1,10 @@
 <template>
   <div class="page-content">
     <div class="header">
-      <el-button>批量导入</el-button>
-      <el-button><el-icon><Download /></el-icon>&nbsp;下载</el-button>
+      <strong>数据列表</strong>
+      <el-button @click="handleDownload('demo')"><el-icon><Download /></el-icon>&nbsp;下载</el-button>
     </div>
-    <el-table :data="tableData">
+    <el-table :data="tableData" id="excel_table">
       <template v-for="propItem in propList" :key="propItem.prop">
         <el-table-column v-if="propItem.prop === 'operation'" v-bind="propItem">
           <a>查看</a>
@@ -30,26 +30,33 @@
 </template>
 
 <script setup>
+import FileSaver from 'file-saver'
+import { write, utils } from 'xlsx';
+
 const props = defineProps({
     propList: Array,
     tableCount: Number,
     tableData: Array,
 })
 
-//分页器信息变了就获取新数据
-const pageInfo = ref({ currentPage: 1 }); //默认第1页
-watch(pageInfo, () => getPageData()); 
+const handleDownload = (name) => {
+  let table = document.getElementById("excel_table")
+  let et = utils.table_to_book(table)
+  let output = write(et, {
+    bookType: "xlsx",
+    bookSST: true,
+    type: "array"
+  })
 
-//获取新数据
-// const getPageData = (queryInfo) => {
-//   store.dispatch("system/getPageListAction", {
-//     pageName: props.pageName, //pageUrl 部门是/department/list，角色是/role/list...
-//     queryInfo: {
-//       ...queryInfo, //把queryInfo的东西全部拿出来，一个一个条件都可以查询
-//     },
-//   });
-// }; //不同页面就dispatch不同的东西，有不同的操作}
-// getPageData(); //一调用就可以发送网络请求</script>
+  try {
+      FileSaver.saveAs(new Blob([output], { type: "application/octet-stream" }), `${name}.xlsx`)
+  } catch (e) {
+    console.log(e)
+  }
+
+  return output
+}
+</script>
 
 <style scoped>
 .page-content {

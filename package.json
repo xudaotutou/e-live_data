@@ -17,10 +17,12 @@
     "axios": "^0.27.2",
     "echarts": "^5.4.0",
     "element-plus": "^2.2.17",
+    "file-saver": "^2.0.5",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.22",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.5"
+    "vue-router": "^4.1.5",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@testing-library/vue": "^6.6.1",
