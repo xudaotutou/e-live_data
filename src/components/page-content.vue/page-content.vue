@@ -1,7 +1,13 @@
 <template>
   <div class="page-content">
     <div class="header">
-      <strong>数据列表</strong>
+      <el-upload
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :on-success="handleChange"
+        :file-list="fileList"
+        class="el-upload"
+      ><el-button>批量导入</el-button>
+      </el-upload>
       <el-button @click="handleDownload('demo')"><el-icon><Download /></el-icon>&nbsp;下载</el-button>
     </div>
     <el-table :data="tableData" id="excel_table">
@@ -31,7 +37,7 @@
 
 <script setup>
 import FileSaver from 'file-saver'
-import { write, utils } from 'xlsx';
+import { write, utils } from 'xlsx'
 
 const props = defineProps({
     propList: Array,
@@ -47,14 +53,48 @@ const handleDownload = (name) => {
     bookSST: true,
     type: "array"
   })
-
   try {
       FileSaver.saveAs(new Blob([output], { type: "application/octet-stream" }), `${name}.xlsx`)
   } catch (e) {
     console.log(e)
   }
-
   return output
+};
+
+let handleChange = (res, file, fileList) => {
+  for (let i = 0; i < fileList.length; i++) {
+    if (file.name != fileList[i].name) {
+      this.fileList.push({
+        name: file.name,
+        url: "",
+        uid: file.uid
+      });
+    }
+  }
+  const files = { 0: file };
+  this.readExcel(files);
+}
+let readExcel = (file) => {
+  const fileReader = new FileReader();
+  fileReader.onload = ev => {
+    try {
+      const data = ev.target.result;
+      const workbook = read(data, { type: "binary" });
+      const params = [];
+      workbook.SheetNames.forEach(item => {
+        this.tableData.push(utils.sheet_to_json(workbook.Sheets[item]));
+      });
+      if (this.tableData.length > 0) {
+        for (const key in this.tableData[0][0]) {
+          this.tableHead.push(key);
+        }
+      }
+    } catch (e) {
+      console.log("error:" + e);
+      return false;
+    }
+  };
+  fileReader.readAsBinaryString(file[0].raw);
 }
 </script>
 
