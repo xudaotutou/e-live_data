@@ -10,7 +10,7 @@
 
 <script setup>
 import LdCard from "@/base-ui/card";
-import { getProductData } from '@/utils/api/productData'
+import { getProductData } from '@/utils/api/productData.js'
 let listData = ref([])
 let quantity = ref({})
 getProductData().then(res=>{

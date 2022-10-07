@@ -11,7 +11,7 @@
 
 <script setup>
 import LdCard from "@/base-ui/card";
-import { getOrderData } from '@/utils/api/orderData'
+import { getOrderData } from "@/utils/api/orderData.js"
 import Util from "@/utils/filterUtils"
 
 let listData = ref([])

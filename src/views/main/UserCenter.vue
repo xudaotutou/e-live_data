@@ -68,7 +68,7 @@
  
 <script setup>
 // import { userCenterStore } from '@/store/userCenter.js'
-import { getUserData } from '@/utils/api/userCenter'
+import { getUserData } from '@/utils/api/userCenter.js'
 let userInfo = ref({})
 getUserData().then(res=>{
 userInfo.value = res.data
