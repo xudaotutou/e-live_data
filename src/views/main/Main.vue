@@ -37,7 +37,15 @@ export default {
   width: 100%;
   height: 100%;
 }
-
+:root {
+  --el-color-primary: #f39423;
+  --el-color-primary-light-3: #f5a544;
+  --el-color-primary-light-5: #f7b463;
+  --el-color-primary-light-7: #f9c78b;
+  --el-color-primary-light-8: #fbdab2;
+  --el-color-primary-light-9: #fdecd8;
+  --el-color-primary-dark-2: #c2741b;
+}
 .main-content,
 .page {
   height: 100%;

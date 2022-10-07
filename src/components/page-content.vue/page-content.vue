@@ -4,7 +4,6 @@
       <el-upload
         action="https://jsonplaceholder.typicode.com/posts/"
         :on-success="handleChange"
-        :file-list="fileList"
         class="el-upload"
       ><el-button>批量导入</el-button>
       </el-upload>
