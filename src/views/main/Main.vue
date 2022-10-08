@@ -15,7 +15,8 @@
         </el-main>
       </el-container>
     </el-container>
-  </div></template>
+  </div>
+</template>
 
 <script>
 import NavHeader from "@/components/nav-header";
@@ -36,7 +37,15 @@ export default {
   width: 100%;
   height: 100%;
 }
-
+:root {
+  --el-color-primary: #f39423;
+  --el-color-primary-light-3: #f5a544;
+  --el-color-primary-light-5: #f7b463;
+  --el-color-primary-light-7: #f9c78b;
+  --el-color-primary-light-8: #fbdab2;
+  --el-color-primary-light-9: #fdecd8;
+  --el-color-primary-dark-2: #c2741b;
+}
 .main-content,
 .page {
   height: 100%;
@@ -48,9 +57,6 @@ export default {
   color: #333;
   text-align: center;
   align-items: center;
-}
-
-.el-header {
   height: 48px !important;
   background-color: #fff;
 }
@@ -64,15 +70,16 @@ export default {
   background-color: #fff;
   transition: width 0.3s linear;
   margin-top: 10px;
+  width: 180px;
 }
 
 .el-main {
+  min-width: 610px;
   color: #333;
   text-align: center;
   background-color: #fff;
   padding: 0;
-  margin: 15px;
-  overflow: hidden
+  margin: 10px;
 }
 
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="nav-header">
     <div class="logo">
+      <img class="img" src="@/assets/taobao.svg" alt="logo" />
       E-live Data
     </div>
     <user-info />
@@ -16,8 +17,9 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
-.user-info{
-  text-align: right;
+img{
+  vertical-align: middle;
 }
 </style>
