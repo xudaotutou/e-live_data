@@ -51,14 +51,17 @@ const props = defineProps({
 })
 const emit = defineEmits(["resetBtnClick", "queryBtnClick"])
 const formItems = props.formItems ?? [];
-const formOriginData = ref({});
+const formOriginData = {};
 for (const item of formItems) {
   formOriginData[item.field] = ''; //默认值空字符串
 }
 let formData = ref(formOriginData);
 
 const handleResetClick = () => {
-  formData.value = formOriginData;
+  // formData.value = formOriginData;
+  for(const item of formItems) {
+    if(item.field in formData.value) formData.value[item.field] = ''
+  }
   emit("resetBtnClick");
 };
 
