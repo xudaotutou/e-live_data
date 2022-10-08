@@ -1,11 +1,11 @@
 <template>
   <div class="ld-card">
       <el-row :gutter="12">
-        <el-col v-for="item in cardItems" v-bind="colLayout">
+        <el-col v-for="item in cardItems" :key="item.key" v-bind="colLayout">
           <el-card>
             <span>{{ item.title }} </span>
             <div class="content">
-              <strong>{{ item.quantity }}</strong>&nbsp;
+              <strong>{{ quantity[item.key] }}</strong>&nbsp;
               <span>{{ item.unit }}</span>
             </div>
           </el-card>
@@ -18,7 +18,8 @@
 export default {
   props: {
     cardItems: Array,
-    colLayout: Object
+    colLayout: Object,
+    quantity: Object
   }
 }
 </script>

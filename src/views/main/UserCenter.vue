@@ -2,7 +2,7 @@
   <div class="user-center">
     <div class="personal-info">
       <div class="avatar">
-        <el-avatar src='https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png' :size="90"></el-avatar>
+        <el-avatar src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi.qqkou.com%2Fi%2F3a263009012x249942079b26.jpg&refer=http%3A%2F%2Fi.qqkou.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1667743477&t=51ea3bdf5888d89a47f4016f1ce01700" :size="90"></el-avatar>
         <el-icon><Camera /></el-icon>
       </div>
       <div class="info">
@@ -68,13 +68,11 @@
  
 <script setup>
 // import { userCenterStore } from '@/store/userCenter.js'
-import { getUserData } from '@/utils/api/userCenter'
+import { getUserData } from '@/utils/api/userCenter.js'
 let userInfo = ref({})
-onBeforeMount (()=>{
-  getUserData().then(res=>{
-  userInfo.value = res.data
-  const { userName, userId, createTime, authentication, phoneNumber, password, question, secureNumber, email} = userInfo.value
-  })
+getUserData().then(res=>{
+userInfo.value = res.data
+const { userName, userId, createTime, authentication, phoneNumber, password, question, secureNumber, email} = userInfo.value
 })
 
 const activeName = ref('security-settings')
