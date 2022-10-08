@@ -29,6 +29,7 @@ const handleQueryClick = (queryInfo) => {
   listData.value = res.data
   quantity.value = res.product
   })
+  console.log(queryInfo)
 }
 
 let cardConfig = {

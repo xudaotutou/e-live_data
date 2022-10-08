@@ -27,10 +27,6 @@
       <el-tab-pane label="基础信息" name="basic-info">basic-info</el-tab-pane>
       <el-tab-pane label="安全设置" name="security-settings">
         <el-form>
-          <!-- <el-form-item :label="">
-            <span >已设置。密码至少6位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和大小写字母。</span>
-            <a>修改</a>
-          </el-form-item> -->
           <el-form-item label="登录密码">
             <span v-if="userInfo.password">已设置。密码至少6位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和大小写字母。</span>
             <span v-else class="empty">您暂未设置登录密码，密码至少6位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和大小写字母。</span>
@@ -67,21 +63,14 @@
 </template>
  
 <script setup>
-// import { userCenterStore } from '@/store/userCenter.js'
 import { getUserData } from '@/utils/api/userCenter.js'
 let userInfo = ref({})
 getUserData().then(res=>{
 userInfo.value = res.data
-const { userName, userId, createTime, authentication, phoneNumber, password, question, secureNumber, email} = userInfo.value
 })
 
 const activeName = ref('security-settings')
 
-// const userStore = userCenterStore ()
-// console.log(userStore.counter)
-const handlerField = (params, opt) => {
-  console.log(tab, event)
-}
 </script>
  
 <style>

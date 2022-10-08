@@ -55,9 +55,10 @@ const formOriginData = ref({});
 for (const item of formItems) {
   formOriginData[item.field] = ''; //默认值空字符串
 }
-let formData = ref(formOriginData);
+const formData = ref(formOriginData);
 
 const handleResetClick = () => {
+  console.log(formOriginData)
   formData.value = formOriginData;
   emit("resetBtnClick");
 };

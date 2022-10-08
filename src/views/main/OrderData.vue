@@ -12,7 +12,6 @@
 <script setup>
 import LdCard from "@/base-ui/card";
 import { getOrderData } from "@/utils/api/OrderData.js"
-import Util from "@/utils/filterUtils"
 
 let listData = ref([])
 let quantity = ref({})
@@ -33,7 +32,6 @@ const handleQueryClick = (queryInfo) => {
   quantity.value = res.product
   })
   console.log(queryInfo)
-  // let 
 }
 let cardConfig = {
   colLayout:{
